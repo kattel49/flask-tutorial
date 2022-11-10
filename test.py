@@ -3,18 +3,19 @@ import json
 
 BASE = "http://localhost:5000/"
 
-response = requests.put(BASE+"/video/1", {"name": "Hi", "likes": 20, "views": 1000})
-print(response.json())
+data = [
+    {"likes": 100, "views": 1000, "name": "valla"},
+    {"likes": 10, "views": 10000, "name": "villa"},
+    {"likes": 1, "views": 10000, "name": "hunter x hunter"},
+    {"likes": 102, "views": 10001, "name": "kill la kill"}
+]
 
-response = requests.get(BASE+"/video/1")
-print(response.json())
+for i in range(len(data)):
+    res = requests.put(BASE+f"/video/{i}", data[i])
+    print(res.json())
 
-response = requests.get(BASE+"/video/2")
-print(response.json())
+res = requests.get(BASE+"/video/2")
+print(res.json())
 
-response = requests.delete(BASE+"/video/2")
-print(response.json())
-
-response = requests.delete(BASE+"/video/1")
-print(response)
-
+res = requests.get(BASE+"/video/100")
+print(res.json())
